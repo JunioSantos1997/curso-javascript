@@ -25,21 +25,15 @@ document.addEventListener('click', e => {
     }
 });
 
-function carregaPagina(el) {
+async function carregaPagina(el) {
     const href = el.getAttribute('href');
     const objConfig = {
         method: 'GET',
         url: href
-    }
+    };
 
-    request(objConfig)
-    .then(response => {
-        carregaResultado(response)
-    })
-    .catch(error => {
-        console.log(error)
-    });
-
+    const response = await request(objConfig);
+    carregaResultado(response);
 }
 
 function carregaResultado(response) {
